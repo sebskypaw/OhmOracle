@@ -58,7 +58,7 @@ The output of this program is formatted as a markdown table.
 Licensed under the [MIT license](https://mit-license.org/)
 
 ## Credits
-* **Programming:** [sebsky808](https://github.com/sebsky808)
+* **Programming:** [sebsky](https://github.com/sebskypaw)
 
 ## Support
-If you find this project interesting or helpful, consider supporting me on [ko-fi](https://ko-fi.com/sebsky808), it would be much appreciated!
+If you find this project interesting or helpful, consider supporting me on [ko-fi](https://ko-fi.com/sebsky), it would be much appreciated!
