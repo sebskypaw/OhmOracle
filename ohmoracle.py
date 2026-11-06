@@ -87,13 +87,25 @@ def file_to_resistor_list(filename:str) -> list:
 
 # get command line arguments from sys.argv and return vin, vout, and a list of resistor values
 def get_arguments() -> tuple:
-    parser = argparse.ArgumentParser(description="A CLI voltage divider calculator to simplify the process of picking resistor values.")
-    parser.add_argument("--vin", "-i", type=float, required=True, help="Voltage input value")
-    parser.add_argument("--vout", "-o", type=float, required=True, help="Voltage output value")
-    parser.add_argument("--standard", "-s", type=str, required=False, default="E6", help="Resistor value standard (E6-E192)")
-    parser.add_argument("--csv", "-c", type=str, required=False, default="", metavar="CSV_FILE", help="Resistor value file")
+    parser = argparse.ArgumentParser(description="A CLI voltage divider calculator to simplify the process of picking resistor values.\nIf -i or -o are omitted their values will be prompted for.")
+    parser.add_argument("--vin", "-i", type=float, help="Voltage input value")
+    parser.add_argument("--vout", "-o", type=float, help="Voltage output value")
+    parser.add_argument("--standard", "-s", type=str, default="E6", help="Resistor value standard (E6-E192)")
+    parser.add_argument("--csv", "-c", type=str, default="", metavar="CSV_FILE", help="Resistor value file")
     args = parser.parse_args()
     args.standard = args.standard.upper()
+    while not args.vin:
+        try:
+            args.vin = float(input("Vin: "))
+        except ValueError:
+            print("Please input a number for Vin")
+            continue
+    while not args.vout:
+        try:
+            args.vout = float(input("Vout: "))
+        except ValueError:
+            print("Please input a number for Vout")
+            continue
     if not args.standard in STANDARD_RESISTORS:
         error(f"{args.standard} is not a vaild standard E series name")
     user_csv = file_to_resistor_list(args.csv)
